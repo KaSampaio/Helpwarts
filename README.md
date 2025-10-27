@@ -3,7 +3,7 @@
 Um mini site divertido inspirado no universo de **Harry Potter**, feito para a equipe de **Helpdesk**!  
 Ao informar seu **nome** e **função**, o Chapéu Seletor decidirá — de forma totalmente aleatória — a qual **casa** você pertence. ⚡️
 
-![Chapéu Seletor](https://upload.wikimedia.org/wikipedia/commons/2/29/Sorting_Hat.png)
+![Chapéu Seletor](https://w7.pngwing.com/pngs/996/133/png-transparent-brown-witch-hat-sorting-hat-harry-potter-fantastic-beasts-and-where-to-find-them-magician-hogwarts-harry-potter-hat-carnivoran-dog-like-mammal.png)
 
 ---
 
