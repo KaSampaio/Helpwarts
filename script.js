@@ -29,7 +29,7 @@ document.getElementById('sorting-form').addEventListener('submit', function (eve
     {
       name: 'Suplitherin 🐍',
       description: 'Os estrategistas e espertos das gambiarras geniais.',
-      emblem: 'assets/suplitherin.png'
+      emblem: 'assets/suplitehrin.png'
     },
     {
       name: 'Techclaw 🦅',
