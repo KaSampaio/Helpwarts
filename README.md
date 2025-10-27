@@ -1,7 +1,11 @@
 # 🧙‍♂️ Chapéu Seletor — Helpdesk Houses
 
 Um mini site divertido inspirado no universo de **Harry Potter**, feito para a equipe de **Helpdesk**!  
-Ao informar seu **nome** e **função**, o Chapéu Seletor decidirá — de forma totalmente aleatória — a qual **casa** você pertence. ⚡️  
+Ao informar seu **nome** e **função**, o Chapéu Seletor decidirá — de forma totalmente aleatória — a qual **casa** você pertence. ⚡️
+
+![Chapéu Seletor](https://upload.wikimedia.org/wikipedia/commons/2/29/Sorting_Hat.png)
+
+---
 
 ## 🏠 As Casas
 
@@ -18,28 +22,30 @@ Cada casa representa um estilo único dentro do time, mostrando como todos têm 
 
 ## 🚀 Funcionalidades
 
-- Formulário com campos de **Nome** e **Função**  
-- Escolha **aleatória** entre as quatro casas personalizadas  
-- **Animações** do Chapéu Seletor “pensando” e revelando a casa  
-- Exibição do **brasão** e **mensagem personalizada** de boas-vindas  
-- Efeitos visuais (faíscas) para dar aquele toque mágico ✨  
-- Código feito em **HTML, CSS e JavaScript puros** — sem dependências externas
+- Formulário com campos de **Nome** e **Função**
+- Escolha **aleatória** entre as quatro casas personalizadas
+- Exibição do **chapéu seletor** animado “pensando”
+- Mostra o **brasão** e **mensagem de boas-vindas**
+- Código em **HTML, CSS e JavaScript puros**
+- Totalmente responsivo e sem dependências externas
 
 ---
 
 ## 🧩 Tecnologias utilizadas
 
-- **HTML5** – estrutura da página  
-- **CSS3** – layout, tipografia e animações  
-- **JavaScript (ES6)** – lógica do chapéu e seleção das casas  
-- **Google Fonts (Cinzel + Montserrat)** – estilo Hogwarts clássico  
+- **HTML5** → estrutura da página  
+- **CSS3** → layout, animações e estilos inspirados em Hogwarts  
+- **JavaScript (ES6)** → lógica do sorteio do chapéu  
+- **Google Fonts (Cinzel + Montserrat)** → fontes no estilo Hogwarts clássico  
 
 ---
 
 ## 📂 Estrutura do projeto
 
 ```bash
-📁 chapéu-seletor/
+📁 chapeu-seletor-helpdesk/
 │
-├── index.html     # Arquivo principal com todo o código do site
-└── README.md      # Este arquivo de documentação
+├── index.html     # Estrutura principal da página
+├── style.css      # Estilos e animações
+├── script.js      # Lógica do chapéu seletor
+└── README.md      # Este arquivo
