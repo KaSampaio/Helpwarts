@@ -24,22 +24,22 @@ document.getElementById('sorting-form').addEventListener('submit', function (eve
     {
       name: 'Helpindor 🦁',
       description: 'Os corajosos que pegam os chamados impossíveis.',
-      emblem: 'https://upload.wikimedia.org/wikipedia/en/4/4f/Gryffindor_ClearBG.png'
+      emblem: 'assets/Helpindor.png'
     },
     {
       name: 'Suplitherin 🐍',
       description: 'Os estrategistas e espertos das gambiarras geniais.',
-      emblem: 'https://upload.wikimedia.org/wikipedia/en/7/7b/Slytherin_ClearBG.png'
+      emblem: 'assets/suplitherin.png'
     },
     {
       name: 'Techclaw 🦅',
       description: 'Os estudiosos do sistema e dos logs.',
-      emblem: 'https://upload.wikimedia.org/wikipedia/en/1/11/Ravenclaw_ClearBG.png'
+      emblem: 'assets/techclaw.png'
     },
     {
       name: 'Bugpuff 🦡',
       description: 'Os pacientes e calmos que salvam o dia no silêncio.',
-      emblem: 'https://upload.wikimedia.org/wikipedia/en/5/5e/Hufflepuff_ClearBG.png'
+      emblem: 'assets/Bugpuff.png'
     }
   ];
 
