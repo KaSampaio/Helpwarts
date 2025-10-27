@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Chapéu Seletor — Helpdesk Houses</title>
+
+<!-- Fonte com cara medieval -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:400,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0f0b06;
+    --panel:#f6ecd8;
+    --accent:#b58a3c;
+    --glass: rgba(255,255,255,0.06);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:
+      radial-gradient(circle at 10% 10%, rgba(255,255,255,0.03), transparent 10%),
+      linear-gradient(180deg,#0c0a07 0%, #1b1611 60%),
+      var(--bg);
+    min-height:100vh;
+    color:#eee;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+  }
+
+  /* container */
+  .card{
+    width:100%;
+    max-width:980px;
+    background: linear-gradient(180deg, rgba(15,11,6,0.6), rgba(255,255,255,0.02));
+    border-radius:16px;
+    padding:28px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.6);
+    display:grid;
+    grid-template-columns: 380px 1fr;
+    gap:24px;
+    align-items:start;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  /* left: style Hogwarts */
+  .left{
+    background: linear-gradient(180deg, rgba(255,250,240,0.02), rgba(255,250,240,0.01));
+    border-radius:12px;
+    padding:20px;
+    min-height:360px;
+    position:relative;
+    overflow:hidden;
+    border: 1px solid rgba(0,0,0,0.4);
+  }
+  .logo{
+    font-family: "Cinzel", serif;
+    font-size:28px;
+    color:var(--panel);
+    text-shadow: 0 2px 0 rgba(0,0,0,0.6);
+    letter-spacing:1px;
+  }
+  .desc{
+    margin-top:12px;
+    color:#dcd3c6;
+    font-size:14px;
+    line-height:1.4;
+  }
+
+  form{margin-top:18px}
+  label{display:block;color:#ded3c9;font-size:13px;margin:12px 0 6px}
+  input[type="text"], input[type="search"]{
+    width:100%;
+    padding:10px 12px;
+    border-radius:8px;
+    border:1px solid rgba(0,0,0,0.25);
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));
+    color:#fff;
+    font-size:14px;
+  }
+  .small{
+    font-size:12px;color:#bfb5a8;margin-top:6px;
+  }
+
+  .btn{
+    display:inline-block;
+    margin-top:16px;
+    padding:12px 18px;
+    border-radius:10px;
+    font-weight:600;
+    cursor:pointer;
+    border:0;
+    background: linear-gradient(90deg,#8b5e2b,#b38a49);
+    color:#111;
+    box-shadow: 0 6px 18px rgba(179,138,73,0.18);
+    transition: transform .14s ease;
+  }
+  .btn:active{ transform:translateY(2px) }
+
+  /* right: result area */
+  .right{
+    padding:18px;
+    border-radius:12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    min-height:360px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+
+  /* wizard hat & animation */
+  .hat-wrap{
+    width:220px;height:160px;display:flex;align-items:center;justify-content:center;
+    margin:6px 0 10px;
+    position:relative;
+  }
+  .hat{
+    width:160px;height:130px;
+    background:linear-gradient(180deg,#2b1f1a,#1a110d);
+    border-radius:50% 50% 18% 18% / 60% 60% 40% 40%;
+    transform-origin:50% 0%;
+    box-shadow: inset 0 -12px 20px rgba(0,0,0,0.5), 0 8px 18px rgba(0,0,0,0.6);
+    transition: transform .9s cubic-bezier(.2,.8,.2,1);
+  }
+  .hat::after{
+    content:"";
+    position:absolute;
+    left:50%;top:86%;
+    transform:translateX(-50%);
+    width:220px;height:26px;border-radius:14px;
+    background:linear-gradient(180deg,#392b20,#261b14);
+    box-shadow:0 6px 18px rgba(0,0,0,0.6);
+  }
+  .hat.talk{ transform:rotate(-8deg) translateY(-4px) scale(1.03) }
+  .hat.open{
+    transform: rotate(-18deg) translateY(-32px) scale(1.06);
+    transition: transform .7s cubic-bezier(.2,.8,.2,1);
+  }
+
+  /* result text + crest */
+  .result{
+    text-align:center;
+    margin-top:8px;
+    min-height:120px;
+    display:flex;
+    gap:18px;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    padding:6px 12px;
+  }
+  .greeting{
+    font-family:"Cinzel", serif;
+    font-size:20px;
+    letter-spacing:0.6px;
+    color:#fff8ef;
+  }
+  .house-name{
+    font-size:34px;
+    font-weight:800;
+    margin-top:6px;
+    text-shadow: 0 6px 18px rgba(0,0,0,0.7);
+  }
+
+  /* crest box */
+  .crest{
+    width:140px;height:140px;border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 12px 30px rgba(0,0,0,0.6);
+    transform:scale(.3) rotate(-8deg);
+    opacity:0;
+    transition: transform .7s cubic-bezier(.2,.85,.3,1), opacity .5s ease;
+    border: 6px solid rgba(255,255,255,0.06);
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+    position:relative;
+  }
+  .crest.show{
+    transform:scale(1) rotate(0deg);
+    opacity:1;
+  }
+  .crest-inner{
+    width:88%;height:88%;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    color:#101010;font-weight:700;font-family:"Cinzel", serif;font-size:34px;
+    text-shadow: 0 2px 0 rgba(255,255,255,0.06);
+    box-shadow: inset 0 6px 18px rgba(255,255,255,0.02);
+  }
+  .house-desc{color:#e9dcc7;font-size:14px;margin-top:8px;max-width:420px}
+
+  /* colors for houses */
+  .helpindor { border-color:#b86b2f; }
+  .helpindor .crest-inner { background: linear-gradient(180deg,#f6cf7e,#c87e2b); color:#3b230a; }
+  .suplitherin { border-color:#1f6d3b; }
+  .suplitherin .crest-inner { background: linear-gradient(180deg,#98d69a,#2a6f3c); color:#072012; }
+  .techclaw { border-color:#1e3e86; }
+  .techclaw .crest-inner { background: linear-gradient(180deg,#cfe6ff,#6b95d6); color:#041533; }
+  .bugpuff { border-color:#6b4a1f; }
+  .bugpuff .crest-inner { background: linear-gradient(180deg,#f0d8b1,#b68b54); color:#281604; }
+
+  /* small footer */
+  .credits{position:absolute;left:18px;bottom:12px;font-size:12px;color:#bfb5a8}
+
+  /* confetti-ish circles for fun */
+  .spark{
+    position:absolute;width:8px;height:8px;border-radius:50%;opacity:0.0;
+    transform:translateY(0);
+    filter: blur(.6px);
+    animation: sparkPop 900ms ease forwards;
+  }
+  @keyframes sparkPop{
+    0%{ opacity:0; transform:translateY(0) scale(.2) }
+    30%{ opacity:1; transform:translateY(-40px) scale(1.05) }
+    100%{ opacity:0; transform:translateY(-120px) scale(.3) }
+  }
+
+  /* Responsive */
+  @media (max-width:880px){
+    .card{ grid-template-columns: 1fr; padding:18px; gap:14px; }
+    .left, .right{ min-height:unset }
+    .hat-wrap{ display:none }
+  }
+</style>
+</head>
+<body>
+  <div class="card" role="main" aria-labelledby="title">
+    <div class="left" aria-hidden="false">
+      <div class="logo" id="title">Escola dos Helpdesks</div>
+      <p class="desc">Bem-vindo ao Chapéu Seletor da equipe! Insira seu nome e função — o Chapéu (muito sábio) decidirá em qual casa você pertence.</p>
+
+      <form id="selectorForm" onsubmit="return false;" aria-label="Formulário do Chapéu Seletor">
+        <label for="nameInput">Nome</label>
+        <input id="nameInput" type="text" placeholder="Ex: Kaio" required autocomplete="name" />
+
+        <label for="roleInput">Função (ex.: Helpdesk Jr I, Helpdesk Senior)</label>
+        <input id="roleInput" type="text" placeholder="Ex: Helpdesk Senior" required autocomplete="organization" />
+
+        <div class="small">Cada seleção é aleatória — teste quantas vezes quiser para ver onde o Chapéu te manda!</div>
+
+        <button id="goBtn" class="btn" type="button">Colocar o Chapéu 🪄</button>
+      </form>
+
+      <div class="credits">Feito com magia por você ✨</div>
+    </div>
+
+    <div class="right" aria-live="polite">
+      <div class="hat-wrap" aria-hidden="true">
+        <div id="hat" class="hat" role="img" aria-label="Chapéu Seletor"></div>
+      </div>
+
+      <div class="result" id="resultArea">
+        <div class="greeting">Diga seu nome e função — o Chapéu vai decidir!</div>
+        <div class="house-name" id="houseName" style="display:none"></div>
+
+        <div id="crestBox" class="crest" aria-hidden="true">
+          <div id="crestInner" class="crest-inner"></div>
+        </div>
+
+        <div id="houseDesc" class="house-desc" style="display:none"></div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  // Houses definition
+  const HOUSES = [
+    {
+      id: 'helpindor',
+      name: 'Helpindor 🦁',
+      tagline: 'Os corajosos que pegam os chamados impossíveis',
+      symbol: '🦁'
+    },
+    {
+      id: 'suplitherin',
+      name: 'Suplitherin 🐍',
+      tagline: 'Os estrategistas e espertos das gambiarras geniais',
+      symbol: '🐍'
+    },
+    {
+      id: 'techclaw',
+      name: 'Techclaw 🦅',
+      tagline: 'Os estudiosos do sistema e dos logs',
+      symbol: '🦅'
+    },
+    {
+      id: 'bugpuff',
+      name: 'Bugpuff 🦡',
+      tagline: 'Os pacientes e calmos que salvam o dia no silêncio',
+      symbol: '🦡'
+    }
+  ];
+
+  const hat = document.getElementById('hat');
+  const goBtn = document.getElementById('goBtn');
+  const nameInput = document.getElementById('nameInput');
+  const roleInput = document.getElementById('roleInput');
+
+  const greeting = document.querySelector('.greeting');
+  const houseNameEl = document.getElementById('houseName');
+  const crestBox = document.getElementById('crestBox');
+  const crestInner = document.getElementById('crestInner');
+  const houseDesc = document.getElementById('houseDesc');
+
+  function randInt(max){ return Math.floor(Math.random()*max); }
+
+  function doSelect(){
+    const name = (nameInput.value || '').trim();
+    const role = (roleInput.value || '').trim();
+    if(!name || !role){
+      // small UX fallback
+      alert('Preencha Nome e Função antes de colocar o Chapéu ✨');
+      return;
+    }
+
+    // Chapéu "pensando" animation
+    hat.classList.remove('open');
+    hat.classList.add('talk');
+    greeting.textContent = `${name}, o Chapéu está pensando...`;
+    houseNameEl.style.display='none';
+    houseDesc.style.display='none';
+    crestBox.classList.remove('show');
+    crestBox.setAttribute('aria-hidden','true');
+
+    // small pseudo-random delay to build anticipation
+    const thinkingTime = 1200 + Math.random()*1000;
+
+    // small hat movement
+    setTimeout(()=> hat.classList.add('open'), thinkingTime*0.5);
+
+    setTimeout(()=> {
+      hat.classList.remove('talk');
+      // choose
+      const chosen = HOUSES[randInt(HOUSES.length)];
+      showResult(chosen, name, role);
+    }, thinkingTime + 300);
+  }
+
+  function showResult(house, name, role){
+    // greeting and house name
+    greeting.textContent = `Parabéns, ${name} — o Chapéu decidiu:`;
+    houseNameEl.textContent = house.name;
+    houseNameEl.style.display='block';
+
+    // crest visuals
+    crestBox.className = 'crest ' + house.id;
+    crestInner.innerHTML = `<div style="text-align:center">
+      <div style="font-size:40px;line-height:1">${house.symbol}</div>
+    </div>`;
+    crestBox.setAttribute('aria-hidden','false');
+
+    // description
+    houseDesc.textContent = `${house.tagline} — Função: ${role}`;
+    houseDesc.style.display='block';
+
+    // show animation
+    setTimeout(()=> crestBox.classList.add('show'), 60);
+
+    // small celebratory sparks
+    spawnSparks(house.id);
+  }
+
+  function spawnSparks(houseId){
+    // remove previous sparks
+    document.querySelectorAll('.spark').forEach(s => s.remove());
+    const colors = {
+      helpindor: ['#f6d08a','#d9892e','#f0b66b'],
+      suplitherin: ['#b6e9b8','#60b271','#2e8b4e'],
+      techclaw: ['#cfe6ff','#6fa0e6','#3b5fb0'],
+      bugpuff: ['#f0d6b0','#d09b5b','#7d5a2f']
+    };
+    const palette = colors[houseId] || ['#fff'];
+    const right = document.querySelector('.right');
+    for(let i=0;i<10;i++){
+      const s = document.createElement('div');
+      s.className='spark';
+      s.style.left = (30 + Math.random()*60) + '%';
+      s.style.bottom = (20 + Math.random()*20) + '%';
+      s.style.background = palette[Math.floor(Math.random()*palette.length)];
+      s.style.animationDelay = (Math.random()*200)+'ms';
+      s.style.width = (6 + Math.random()*10) + 'px';
+      s.style.height = s.style.width;
+      right.appendChild(s);
+      // remove after animation
+      setTimeout(()=> s.remove(), 1400);
+    }
+  }
+
+  goBtn.addEventListener('click', doSelect);
+  // allow enter key
+  document.getElementById('selectorForm').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    doSelect();
+  });
+
+  // small accessibility: focus name on load
+  nameInput.focus();
+</script>
+</body>
+</html>
