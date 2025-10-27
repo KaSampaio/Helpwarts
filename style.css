@@ -1,0 +1,117 @@
+/* ==========================
+   style.css — Chapéu Seletor
+   ========================== */
+
+body {
+  background: radial-gradient(circle at center, #1a0f0f 0%, #000 100%);
+  color: #f0e6d2;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  max-width: 500px;
+  width: 90%;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  color: #f9d342;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #d6c3a1;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #7a4b00;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #a36b00;
+}
+
+.hidden {
+  display: none;
+}
+
+#hat-thinking {
+  margin-top: 30px;
+  font-size: 1.2rem;
+  animation: pulse 1.2s infinite;
+}
+
+#hat-image {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+#result {
+  margin-top: 30px;
+}
+
+#house-emblem {
+  width: 120px;
+  height: 120px;
+  margin: 15px auto;
+  display: block;
+}
+
+#welcome {
+  font-family: 'Cinzel', serif;
+  color: #f9d342;
+}
+
+#house-description {
+  color: #d6c3a1;
+  font-style: italic;
+}
+
+#hat-image {
+  animation: wiggle 1s infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
